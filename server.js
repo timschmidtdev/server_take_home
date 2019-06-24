@@ -17,9 +17,15 @@ app.get('/', (req, res) => {
 app.post('/', urlencodedParser, (req, res) => {
   const num = req.body.integer
   integerTracker[num] = integerTracker[num] + 1 || 1
+  
+  let times = 'times'
+  if (integerTracker[num] === 1) {
+    times = 'time'
+  }
+
   res.send(
     { 
-      message: `The number '${num}' was sent ${integerTracker[num]} number of times.`,
+      message: `The number '${num}' was sent ${integerTracker[num]} ${times}.`,
       integerTracker
     }
   )
